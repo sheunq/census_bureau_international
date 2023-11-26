@@ -1,0 +1,19 @@
+create view `male population by age` as SELECT 
+    `year`,
+    `sex`,
+    max(max_age),
+    min(max_age),
+    SUM(population_age_0) population_age_0,
+    SUM(population_age_1) population_age_1,
+    SUM(population_age_2) population_age_2,
+    SUM(population_age_3) population_age_3,
+    SUM(population_age_4) population_age_4,
+    SUM(population_age_40) population_age_40,
+    SUM(population_age_50) population_age_50,
+    SUM(population_age_60) population_age_60,
+    SUM(population_age_70) population_age_70
+FROM
+    census_bureau_international.midyear_population_age_sex
+WHERE
+    country_code IN ('NI') and sex in ('Male')
+GROUP BY `year`;
